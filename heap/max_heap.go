@@ -1,5 +1,7 @@
 package heap
 
+import "errors"
+
 type MaxHeap struct {
 	items []int
 }
@@ -10,28 +12,32 @@ func (h *MaxHeap) Insert(item int) {
 	h.heapifyUp(len(h.items) - 1)
 }
 
-func (h *MaxHeap) Extract() int {
+func (h *MaxHeap) Extract() (int, error) {
 	extracted := h.items[0]
 
-	itemLength := len(h.items) - 1
+	itemLength := len(h.items)
 
 	if itemLength == 0 {
-		// Heap is empty. Nothing to extract
-		return -1
+		return -1, errors.New("Heap is empty! Nothing to extract")
 	}
 
-	h.items[0] = h.items[itemLength]
+	h.items[0] = h.items[itemLength-1]
 
-	h.items = h.items[:itemLength]
+	h.items = h.items[:itemLength-1]
 
 	h.heapifyDown(0)
 
-	return extracted
+	return extracted, nil
+}
+
+func (h *MaxHeap) swapItems(i1, i2 int) {
+	h.items[i1], h.items[i2] = h.items[i2], h.items[i1]
 }
 
 func (h *MaxHeap) heapifyUp(index int) {
 	for h.items[parent(index)] < h.items[index] {
 		h.swapItems(parent(index), index)
+
 		index = parent(index)
 	}
 }
@@ -73,8 +79,4 @@ func left(i int) int {
 
 func right(i int) int {
 	return 2*i + 2
-}
-
-func (h *MaxHeap) swapItems(i1, i2 int) {
-	h.items[i1], h.items[i2] = h.items[i2], h.items[i1]
 }
