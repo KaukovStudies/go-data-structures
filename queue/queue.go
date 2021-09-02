@@ -3,14 +3,14 @@ package queue
 import "errors"
 
 type Queue struct {
-	items []int
+	items []interface{}
 }
 
-func (q *Queue) Enqueue(item int) {
+func (q *Queue) Enqueue(item interface{}) {
 	q.items = append(q.items, item)
 }
 
-func (q *Queue) Dequeue() (int, error) {
+func (q *Queue) Dequeue() (interface{}, error) {
 	if len(q.items) == 0 {
 		return -1, errors.New("Queue is empty. Nothing to dequeue")
 	}
