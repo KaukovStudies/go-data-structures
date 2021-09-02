@@ -41,7 +41,7 @@ func (l *LinkedList) Append(n *Node) {
 	l.Length++
 }
 
-func (l *LinkedList) Delete(value int) {
+func (l *LinkedList) Delete(value interface{}) {
 	if l.Length == 0 {
 		return
 	}
