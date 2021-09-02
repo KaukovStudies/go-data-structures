@@ -9,7 +9,7 @@ type LinkedList struct {
 
 type Node struct {
 	Next *Node
-	Data int
+	Data interface{}
 }
 
 func (l *LinkedList) Prepend(n *Node) {
@@ -22,6 +22,14 @@ func (l *LinkedList) Prepend(n *Node) {
 }
 
 func (l *LinkedList) Append(n *Node) {
+	if l.Head == nil {
+		l.Head = n
+
+		l.Length++
+
+		return
+	}
+
 	lastNode := l.Head
 
 	for lastNode.Next != nil {
@@ -73,7 +81,7 @@ func (l LinkedList) PrintData() {
 	fmt.Println("Node data:")
 
 	for current != nil {
-		fmt.Printf("%d", current.Data)
+		fmt.Printf("%v", current.Data)
 
 		if current.Next != nil {
 			fmt.Print(" -> ")
