@@ -69,6 +69,28 @@ func (l *LinkedList) Delete(value interface{}) {
 	}
 }
 
+func (l LinkedList) Search(value interface{}) bool {
+	if l.Length == 0 {
+		return false
+	}
+
+	if l.Head.Data == value {
+		return true
+	}
+
+	currentNode := l.Head
+
+	for currentNode.Next != nil {
+		if currentNode.Data == value {
+			return true
+		}
+
+		currentNode = currentNode.Next
+	}
+
+	return false
+}
+
 func (l LinkedList) PrintData() {
 	if l.Length == 0 {
 		fmt.Println("List is empty!")
