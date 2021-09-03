@@ -13,13 +13,13 @@ func (h *MaxHeap) Insert(item int) {
 }
 
 func (h *MaxHeap) Extract() (int, error) {
-	extracted := h.items[0]
-
 	itemLength := len(h.items)
 
-	if itemLength == 0 {
-		return -1, errors.New("Heap is empty! Nothing to extract")
+	if len(h.items) == 0 {
+		return -1, errors.New("heap is empty - nothing to extract")
 	}
+
+	extracted := h.items[0]
 
 	h.items[0] = h.items[itemLength-1]
 
