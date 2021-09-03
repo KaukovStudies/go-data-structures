@@ -12,7 +12,7 @@ func (s *Stack) Push(item interface{}) {
 
 func (s *Stack) Pop() (interface{}, error) {
 	if len(s.items) == 0 {
-		return -1, errors.New("Stack is empty! Nothing to pop")
+		return -1, errors.New("stack is empty - nothing to pop")
 	}
 
 	stackSize := len(s.items) - 1

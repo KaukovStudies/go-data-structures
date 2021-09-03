@@ -12,7 +12,7 @@ func (q *Queue) Enqueue(item interface{}) {
 
 func (q *Queue) Dequeue() (interface{}, error) {
 	if len(q.items) == 0 {
-		return -1, errors.New("Queue is empty. Nothing to dequeue")
+		return -1, errors.New("queue is empty - nothing to dequeue")
 	}
 
 	firstItem := q.items[0]
